@@ -6,22 +6,24 @@ import at.dalex.guiapi.view.InventoryGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-public class TestGUI extends InventoryGUI {
+public class TestGUI extends InventoryGUI implements Listener {
 
     public TestGUI() {
         setInventory(createInventory());
+        Bukkit.getServer().getPluginManager().registerEvents(this, Main.getInstance());
     }
 
     @EventHandler
-    public void onGUIClose(GUICloseEvent<TestGUI> event) {
+    public void onGUIClose(GUICloseEvent<InventoryGUI> event) {
         event.getGuiHolder().sendMessage("§cGUI closed.");
     }
 
     @EventHandler
-    public void onGuiClick(GUIClickEvent<TestGUI> event) {
+    public void onGuiClick(GUIClickEvent<InventoryGUI> event) {
         event.getGuiHolder().sendMessage("Clicked item: " + event.getClickedItem().getType().toString());
     }
 

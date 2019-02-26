@@ -1,0 +1,6 @@
+name: DOpenGUIAPI
+version: 1.0
+author: David Kraus
+description: An OpenSource Library for easily creating user interfaces in minecraft.
+main: at.dalex.guiapi.Main
+api-version: 1.13

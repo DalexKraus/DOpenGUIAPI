@@ -13,8 +13,4 @@ public class GUICloseEvent<T> extends GUIEventBase {
         super(guiInstance, guiHolder);
     }
 
-    @Override
-    public HandlerList getHandlers() {
-        return handlers;
-    }
 }

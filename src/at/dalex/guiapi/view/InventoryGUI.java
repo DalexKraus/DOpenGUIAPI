@@ -10,12 +10,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 
-public class InventoryGUI extends GUIBase {
+public class InventoryGUI extends GUIBase implements Listener {
 
     private Inventory inventory;
 
     public InventoryGUI() {
         this.inventory = Bukkit.createInventory(null, 9, "§4No Inventory set.");
+        Bukkit.getServer().getPluginManager().registerEvents(this, Main.getInstance());
     }
 
     @Override
@@ -25,7 +26,7 @@ public class InventoryGUI extends GUIBase {
 
     @Override
     protected void onGUIClose(Player viewHolder) {
-        Bukkit.getServer().getPluginManager().callEvent(new GUICloseEvent<>(this, viewHolder));
+        Bukkit.getServer().getPluginManager().callEvent(new GUICloseEvent<InventoryGUI>(this, viewHolder));
     }
 
     @EventHandler
@@ -33,7 +34,7 @@ public class InventoryGUI extends GUIBase {
         Player viewHolder = (Player) e.getWhoClicked();
         if (GUIManager.isPlayerHoldingGUI(viewHolder.getUniqueId()) && e.getCurrentItem() != null) {
             e.setCancelled(true);
-            Bukkit.getPluginManager().callEvent(new GUIClickEvent<>(this, viewHolder, e.getCurrentItem()));
+            Bukkit.getPluginManager().callEvent(new GUIClickEvent<InventoryGUI>(this, viewHolder, e.getCurrentItem()));
         }
     }
 

@@ -26,8 +26,10 @@ public class Main extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onSneak(PlayerToggleSneakEvent e) {
-        TestGUI gui = new TestGUI();
-        gui.openGUI(e.getPlayer());
-        e.getPlayer().sendMessage("GUI Opened.");
+        if (e.getPlayer().isSneaking()) {
+            TestGUI gui = new TestGUI();
+            gui.openGUI(e.getPlayer());
+            e.getPlayer().sendMessage("GUI Opened.");
+        }
     }
 }
