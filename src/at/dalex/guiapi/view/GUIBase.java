@@ -33,10 +33,15 @@ public abstract class GUIBase implements Listener {
      * Opens this GUIBase for the given player.
      * The previously set View will be displayed.
      *
-     *
      * @param player The player for which this interface should be opened.
      */
     public void openGUI(Player player) {
+        //Close any previously opened GUIs
+        onGUIClose(player);
+        GUIManager.closeGUIForPlayer(player.getUniqueId());
+        player.closeInventory();
+
+        //Open new GUI
         GUIManager.setOpenedGUIForPlayer(player.getUniqueId(), this.guiId);
         onGUIOpen(player);
     }

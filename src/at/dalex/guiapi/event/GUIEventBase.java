@@ -5,13 +5,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-public abstract class GUIEventBase<T> extends Event {
+public abstract class GUIEventBase<T extends GUIBase> extends Event {
 
     private static HandlerList handlers = new HandlerList();
     private T guiInstance;
     private Player guiHolder;
 
-    public GUIEventBase(T guiInstance, Player guiHolder) {
+    GUIEventBase(T guiInstance, Player guiHolder) {
         this.guiInstance = guiInstance;
         this.guiHolder = guiHolder;
     }

@@ -1,5 +1,7 @@
 package at.dalex.guiapi.view;
 
+import org.bukkit.Bukkit;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
@@ -11,7 +13,7 @@ public class GUIManager {
     /* Contains information about which player is currently "watching" which GUIId */
     private static HashMap<UUID, UUID> openedGUIs   = new HashMap<>();
 
-    protected static UUID getFreeGUIId() {
+    static UUID getFreeGUIId() {
         UUID id = null;
         boolean found = false;
         while (!found) {
@@ -20,6 +22,16 @@ public class GUIManager {
                 found = true;
         }
         return id;
+    }
+
+    /**
+     * Closes any opened GUIs.
+     * This is used to prevent item duplication on server-reload.
+     */
+    public static void closeAllGUIs() {
+        for (UUID playerId : openedGUIs.keySet()) {
+            Bukkit.getServer().getPlayer(playerId).closeInventory();
+        }
     }
 
     protected static void unregisterId(UUID guiId) {
