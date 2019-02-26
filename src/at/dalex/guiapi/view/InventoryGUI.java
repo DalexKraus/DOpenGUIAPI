@@ -25,7 +25,7 @@ public class InventoryGUI extends GUIBase {
 
     @Override
     protected void onGUIClose(Player viewHolder) {
-        Bukkit.getServer().getPluginManager().callEvent(new GUICloseEvent<>(this));
+        Bukkit.getServer().getPluginManager().callEvent(new GUICloseEvent<>(this, viewHolder));
     }
 
     @EventHandler
@@ -33,7 +33,7 @@ public class InventoryGUI extends GUIBase {
         Player viewHolder = (Player) e.getWhoClicked();
         if (GUIManager.isPlayerHoldingGUI(viewHolder.getUniqueId())) {
             e.setCancelled(true);
-            Bukkit.getPluginManager().callEvent(new GUIClickEvent<>(this));
+            Bukkit.getPluginManager().callEvent(new GUIClickEvent<>(this, viewHolder));
         }
     }
 
