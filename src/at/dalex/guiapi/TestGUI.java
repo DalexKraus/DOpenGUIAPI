@@ -1,5 +1,6 @@
 package at.dalex.guiapi;
 
+import at.dalex.guiapi.event.GUIClickEvent;
 import at.dalex.guiapi.event.GUICloseEvent;
 import at.dalex.guiapi.view.InventoryGUI;
 import org.bukkit.Bukkit;
@@ -16,7 +17,12 @@ public class TestGUI extends InventoryGUI {
 
     @EventHandler
     public void onGUIClose(GUICloseEvent<TestGUI> event) {
+        event.getGuiHolder().sendMessage("§cGUI closed.");
+    }
 
+    @EventHandler
+    public void onGuiClick(GUIClickEvent<TestGUI> event) {
+        event.getGuiHolder().sendMessage("Clicked item: " + event.getClickedItem().getType().toString());
     }
 
     private Inventory createInventory() {

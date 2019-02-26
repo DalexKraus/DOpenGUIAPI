@@ -31,9 +31,9 @@ public class InventoryGUI extends GUIBase {
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e) {
         Player viewHolder = (Player) e.getWhoClicked();
-        if (GUIManager.isPlayerHoldingGUI(viewHolder.getUniqueId())) {
+        if (GUIManager.isPlayerHoldingGUI(viewHolder.getUniqueId()) && e.getCurrentItem() != null) {
             e.setCancelled(true);
-            Bukkit.getPluginManager().callEvent(new GUIClickEvent<>(this, viewHolder));
+            Bukkit.getPluginManager().callEvent(new GUIClickEvent<>(this, viewHolder, e.getCurrentItem()));
         }
     }
 
