@@ -17,12 +17,16 @@ public class TestGUI2 extends InventoryGUI {
 
     @EventHandler
     public void onGUIClose(GUICloseEvent<InventoryGUI> event) {
-        event.getGuiHolder().sendMessage("§cGUI closed (2)");
+        if (isRelatedToInstance(event)) {
+            event.getGuiHolder().sendMessage("§cGUI closed. (2)");
+        }
     }
 
     @EventHandler
     public void onGuiClick(GUIClickEvent<InventoryGUI> event) {
-        event.getGuiHolder().sendMessage("GUIID(2): " + event.getGuiInstance().getGuiId());
+        if (isRelatedToInstance(event)) {
+            event.getGuiHolder().sendMessage("GUIID(2): " + event.getGuiInstance().getGuiId());
+        }
     }
 
     private Inventory createInventory() {

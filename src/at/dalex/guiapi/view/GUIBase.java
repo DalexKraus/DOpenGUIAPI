@@ -2,6 +2,7 @@ package at.dalex.guiapi.view;
 
 import at.dalex.guiapi.Main;
 import at.dalex.guiapi.event.GUICloseEvent;
+import at.dalex.guiapi.event.GUIEventBase;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -36,23 +37,29 @@ public abstract class GUIBase implements Listener {
      * @param player The player for which this interface should be opened.
      */
     public void openGUI(Player player) {
+        onGUIOpen(player);
+
         //Close any previously opened GUIs
-        onGUIClose(player);
         GUIManager.closeGUIForPlayer(player.getUniqueId());
-        player.closeInventory();
+        System.out.println("Opened gui");
 
         //Open new GUI
         GUIManager.setOpenedGUIForPlayer(player.getUniqueId(), this.guiId);
-        onGUIOpen(player);
     }
 
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
         Player viewHolder = (Player) event.getPlayer();
-        if (GUIManager.isPlayerHoldingGUI(viewHolder.getUniqueId())) {
+        UUID openedGUI = GUIManager.getOpenedGUIFromPlayer(viewHolder.getUniqueId());
+        if (openedGUI != null && openedGUI.equals(getGuiId())) {
             onGUIClose(viewHolder);
             GUIManager.closeGUIForPlayer(viewHolder.getUniqueId());
+            System.out.println("Removed gui");
         }
+    }
+
+    protected boolean isRelatedToInstance(GUIEventBase eventBase) {
+        return eventBase.getGuiInstance().getGuiId().equals(getGuiId());
     }
 
     /**

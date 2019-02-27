@@ -11,7 +11,7 @@ public class GUIManager {
     /* Contains IDs of every single created gui */
     private static ArrayList<UUID> registeredGUIIds = new ArrayList<>();
     /* Contains information about which player is currently "watching" which GUIId */
-    private static HashMap<UUID, UUID> openedGUIs   = new HashMap<>();
+    private static HashMap<UUID, UUID> openedGUIs = new HashMap<>();
 
     static UUID getFreeGUIId() {
         UUID id = null;

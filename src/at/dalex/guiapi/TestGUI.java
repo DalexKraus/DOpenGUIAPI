@@ -17,16 +17,20 @@ public class TestGUI extends InventoryGUI {
 
     @EventHandler
     public void onGUIClose(GUICloseEvent<InventoryGUI> event) {
-        event.getGuiHolder().sendMessage("§cGUI closed.\n§2Test.");
+        System.out.println("ID: " + event.getGuiInstance().getGuiId().toString());
+        if (isRelatedToInstance(event)) {
+            event.getGuiHolder().sendMessage("§cGUI closed.");
+        }
     }
 
     @EventHandler
     public void onGuiClick(GUIClickEvent<InventoryGUI> event) {
-        event.getGuiHolder().sendMessage("GUIID: " + event.getGuiInstance().getGuiId());
-        System.out.println("t: " + event.getClickedItem().getType());
-        if (event.getClickedItem().getType().equals(Material.NETHER_STAR)) {
-            TestGUI2 gui2 = new TestGUI2();
-            gui2.openGUI(event.getGuiHolder());
+        if (isRelatedToInstance(event)) {
+            System.out.println("t: " + event.getClickedItem().getType());
+            if (event.getClickedItem().getType().equals(Material.NETHER_STAR)) {
+                TestGUI2 gui2 = new TestGUI2();
+                gui2.openGUI(event.getGuiHolder());
+            }
         }
     }
 

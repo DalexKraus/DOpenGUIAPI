@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="DGUIAPI:jar">
-    <output-path>$USER_HOME$/Desktop/DevEnv/plugins</output-path>
+    <output-path>$USER_HOME$/Downloads/TestServer1.13/plugins</output-path>
     <root id="archive" name="DGUIAPI.jar">
       <element id="module-output" name="DGUIAPI" />
     </root>
