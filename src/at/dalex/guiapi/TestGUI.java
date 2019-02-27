@@ -17,7 +17,6 @@ public class TestGUI extends InventoryGUI {
 
     @EventHandler
     public void onGUIClose(GUICloseEvent<InventoryGUI> event) {
-        System.out.println("ID: " + event.getGuiInstance().getGuiId().toString());
         if (isRelatedToInstance(event)) {
             event.getGuiHolder().sendMessage("§cGUI closed.");
         }
@@ -26,7 +25,6 @@ public class TestGUI extends InventoryGUI {
     @EventHandler
     public void onGuiClick(GUIClickEvent<InventoryGUI> event) {
         if (isRelatedToInstance(event)) {
-            System.out.println("t: " + event.getClickedItem().getType());
             if (event.getClickedItem().getType().equals(Material.NETHER_STAR)) {
                 TestGUI2 gui2 = new TestGUI2();
                 gui2.openGUI(event.getGuiHolder());

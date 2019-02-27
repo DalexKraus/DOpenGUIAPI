@@ -25,7 +25,7 @@ public class TestGUI2 extends InventoryGUI {
     @EventHandler
     public void onGuiClick(GUIClickEvent<InventoryGUI> event) {
         if (isRelatedToInstance(event)) {
-            event.getGuiHolder().sendMessage("GUIID(2): " + event.getGuiInstance().getGuiId());
+            event.getGuiHolder().sendMessage("Clicked(2): " + event.getClickedItem().getType().toString());
         }
     }
 

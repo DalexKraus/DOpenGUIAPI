@@ -41,7 +41,6 @@ public abstract class GUIBase implements Listener {
 
         //Close any previously opened GUIs
         GUIManager.closeGUIForPlayer(player.getUniqueId());
-        System.out.println("Opened gui");
 
         //Open new GUI
         GUIManager.setOpenedGUIForPlayer(player.getUniqueId(), this.guiId);
@@ -54,7 +53,6 @@ public abstract class GUIBase implements Listener {
         if (openedGUI != null && openedGUI.equals(getGuiId())) {
             onGUIClose(viewHolder);
             GUIManager.closeGUIForPlayer(viewHolder.getUniqueId());
-            System.out.println("Removed gui");
         }
     }
 
