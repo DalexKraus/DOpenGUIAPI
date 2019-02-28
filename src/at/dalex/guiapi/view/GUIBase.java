@@ -46,14 +46,17 @@ public abstract class GUIBase implements Listener {
         GUIManager.setOpenedGUIForPlayer(player.getUniqueId(), this.guiId);
     }
 
+    public void close(Player player) {
+        UUID openedGUI = GUIManager.getOpenedGUIFromPlayer(player.getUniqueId());
+        if (openedGUI != null && openedGUI.equals(getGuiId())) {
+            onGUIClose(player);
+            GUIManager.closeGUIForPlayer(player.getUniqueId());
+        }
+    }
+
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
-        Player viewHolder = (Player) event.getPlayer();
-        UUID openedGUI = GUIManager.getOpenedGUIFromPlayer(viewHolder.getUniqueId());
-        if (openedGUI != null && openedGUI.equals(getGuiId())) {
-            onGUIClose(viewHolder);
-            GUIManager.closeGUIForPlayer(viewHolder.getUniqueId());
-        }
+        close((Player) event.getPlayer());
     }
 
     protected boolean isRelatedToInstance(GUIEventBase eventBase) {

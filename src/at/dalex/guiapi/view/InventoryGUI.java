@@ -34,7 +34,6 @@ public class InventoryGUI extends GUIBase {
                 && e.getCurrentItem() != null) {
             e.setCancelled(true);
             Bukkit.getPluginManager().callEvent(new GUIClickEvent<>(this, viewHolder, e.getCurrentItem()));
-            viewHolder.sendMessage("Sent");
         }
     }
 
