@@ -40,4 +40,8 @@ public class InventoryGUI extends GUIBase {
     protected void setInventory(Inventory inventory) {
         this.inventory = inventory;
     }
+
+    public Inventory getInventory() {
+        return this.inventory;
+    }
 }
